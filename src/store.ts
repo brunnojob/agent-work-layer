@@ -1,5 +1,6 @@
 // Storage for desks. Implement DeskStore to back a desk with a database.
-import { mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rename, writeFile, link, unlink } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
 import { join } from "node:path";
 import { AwlError } from "./errors.ts";
 import type { OrderRecord } from "./types.ts";
@@ -69,9 +70,13 @@ export class FileStore implements DeskStore {
 
   async #write(record: OrderRecord) {
     const file = this.#path(record.order.id);
-    const tmp = `${file}.${process.pid}.${Date.now()}.tmp`;
-    await writeFile(tmp, JSON.stringify(record, null, 2));
-    await rename(tmp, file);
+    const tmp = `${file}.${randomUUID()}.tmp`;
+    try {
+      await writeFile(tmp, JSON.stringify(record, null, 2), { flag: "wx", mode: 0o600 });
+      await rename(tmp, file);
+    } finally {
+      await unlink(tmp).catch((e) => { if (e.code !== "ENOENT") throw e; });
+    }
   }
 
   async read(id: string): Promise<OrderRecord | null> {
@@ -85,8 +90,20 @@ export class FileStore implements DeskStore {
   }
 
   async insert(record: OrderRecord) {
-    if (await this.read(record.order.id)) throw new AwlError("ALREADY_EXISTS", `order "${record.order.id}" already exists`);
-    await this.#write(record);
+    await this.#ready;
+    const file = this.#path(record.order.id);
+    const tmp = `${file}.${randomUUID()}.tmp`;
+    try {
+      await writeFile(tmp, JSON.stringify(record, null, 2), { flag: "wx", mode: 0o600 });
+      try { await link(tmp, file); }
+      catch (e) {
+        if ((e as NodeJS.ErrnoException).code === "EEXIST")
+          throw new AwlError("ALREADY_EXISTS", `order "${record.order.id}" already exists`);
+        throw e;
+      }
+    } finally {
+      await unlink(tmp).catch((e) => { if (e.code !== "ENOENT") throw e; });
+    }
   }
 
   async update(record: OrderRecord, expectedSeq: number) {

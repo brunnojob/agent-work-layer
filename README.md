@@ -203,3 +203,11 @@ Issues, ideas and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.
 ## License
 
 [Apache-2.0](LICENSE). You can use, modify and ship it, including commercially. The license includes a patent grant.
+
+## Implementation update
+
+FileStore inserts use unique temporary files and an atomic hard-link operation: concurrent writers cannot both create the same order. Temporary files are cleaned up after success or failure. Updates retain the documented best-effort cross-process revision check. Run `node --experimental-transform-types --test tests/insert-race.test.ts`.
+
+Credits for this fork's updates: [brunnodev.store](https://brunnodev.store). Original authors retain their respective attribution.
+
+Contribution trailer: `Co-authored-by: nyctophile <33561761+ineedfoundmyway@users.noreply.github.com>`.
