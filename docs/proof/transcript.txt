@@ -1,0 +1,104 @@
+$ bash -e -o pipefail -c npm ci
+
+added 99 packages, and audited 100 packages in 2s
+
+34 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+$ bash -e -o pipefail -c npm run typecheck
+
+> agent-work-layer@0.1.2 typecheck
+> tsc --noEmit -p tsconfig.json
+
+
+$ bash -e -o pipefail -c npm test
+
+> agent-work-layer@0.1.2 test
+> node --test "test/**/*.test.ts"
+
+▶ awl CLI
+  ✔ --help and no arguments print usage (751.780698ms)
+  ✔ --version prints the package version (384.121473ms)
+  ✔ validate passes the good example (278.336419ms)
+  ✔ validate fails the bad example and names each rule (266.792821ms)
+  ✔ validate --json prints machine-readable results (274.193218ms)
+  ✔ validate skips the report when the order is invalid (232.605307ms)
+  ✔ validate --parent checks delegation rules (500.928848ms)
+  ✔ a warning-only report exits 0 and marks the file with ! (232.40185ms)
+  ✔ usage errors exit 2 (1153.55864ms)
+  ✔ schema prints both JSON Schemas (469.932174ms)
+✔ awl CLI (4546.867171ms)
+▶ awl desk over stdio
+  ✔ two processes coordinate through a shared folder (736.633581ms)
+✔ awl desk over stdio (750.468286ms)
+▶ toolAllowed
+  ✔ filings/search with [filings/search] → true (0.813497ms)
+  ✔ filings/search with [filings/*] → true (0.229867ms)
+  ✔ filings/search with [*] → true (0.136997ms)
+  ✔ filings/search with [filings/get] → false (0.232571ms)
+  ✔ filings/search with [filingsx/*] → false (0.132921ms)
+  ✔ filings/search with [files/*, calc/*] → false (0.142415ms)
+  ✔ filings/search with [] → false (0.30466ms)
+✔ toolAllowed (3.544449ms)
+▶ patternCovered
+  ✔ filings/search within [filings/search] → true (1.090015ms)
+  ✔ filings/search within [filings/*] → true (0.149055ms)
+  ✔ filings/* within [filings/*] → true (0.169436ms)
+  ✔ filings/* within [*] → true (0.294034ms)
+  ✔ * within [*] → true (2.016904ms)
+  ✔ filings/* within [filings/search] → false (0.094493ms)
+  ✔ * within [filings/*] → false (0.069334ms)
+  ✔ calc/sum within [filings/*] → false (0.104979ms)
+  ✔ calc/sum within [] → false (0.082855ms)
+✔ patternCovered (5.081197ms)
+▶ validateChildOrder
+  ✔ accepts a strictly narrower child (1.581366ms)
+  ✔ accepts a child equal to its parent (0.164538ms)
+  ✔ accepts extra budget units the parent does not limit (0.222035ms)
+  ✔ C1 rejects a child that drops a parent budget unit (0.338491ms)
+  ✔ C1 rejects a larger budget (0.123967ms)
+  ✔ C2 rejects a wider tool pattern (0.138059ms)
+  ✔ C2 rejects a tool the parent does not have (0.105078ms)
+  ✔ C3 rejects a later deadline (0.093491ms)
+  ✔ reports every violation at once (0.279421ms)
+✔ validateChildOrder (3.389184ms)
+▶ create
+  ✔ fills spec, id, created_at and from (5.993935ms)
+  ✔ keeps an explicit id (0.319041ms)
+  ✔ the actor is always the manager, whatever the input says (0.884274ms)
+  ✔ uses a random id by default (0.923704ms)
+  ✔ rejects a duplicate id (0.588127ms)
+  ✔ rejects an invalid order with findings (1.102784ms)
+  ✔ rejects a deadline already in the past (0.406824ms)
+  ✔ requires an actor (0.759626ms)
+✔ create (12.708347ms)
+▶ reads
+  ✔ get throws NOT_FOUND for an unknown id (0.701639ms)
+  ✔ returned records are copies (0.619935ms)
+  ✔ list filters by to, from, state and parent (11.078608ms)
+  ✔ list returns summaries (0.326212ms)
+✔ reads (13.097294ms)
+▶ lifecycle through the desk
+  ✔ happy path: offer, accept, start, report, approve (2.86953ms)
+  ✔ the report gets spec, order_id, from, attempt and finished_at (0.664763ms)
+  ✔ a worker-supplied finished_at is kept (0.658293ms)
+  ✔ decline ends the order (0.596861ms)
+  ✔ rework returns to working and numbers attempts (1.379602ms)
+  ✔ rework needs a reason (1.076735ms)
+  ✔ review rejects an unknown decision (0.610441ms)
+  ✔ blocked, answered, then done (1.316717ms)
+  ✔ an empty answer is refused (0.551101ms)
+  ✔ a failed repor
+Full transcript in the execution-proof artifact.
+$ bash -e -o pipefail -c npm run test:package
+
+> agent-work-layer@0.1.2 test:package
+> npm run build && node scripts/package-smoke.ts
+
+
+> agent-work-layer@0.1.2 build
+> rm -rf dist && tsc -p tsconfig.build.json && chmod +x dist/cli.js
+
+package ok: agent-work-layer-0.1.2.tgz, 27 files, 26.5 kB

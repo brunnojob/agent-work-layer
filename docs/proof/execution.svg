@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="684" viewBox="0 0 1100 684">
+<rect width="1100" height="684" rx="12" fill="#0d1117"/>
+<title>Recorded program execution</title>
+<g font-family="monospace" font-size="16">
+<text x="24" y="36" fill="#c9d1d9">brunnojob/agent-work-layer</text>
+<text x="24" y="58" fill="#c9d1d9">Executed: 2026-10-10T02:36:20.299198+00:00</text>
+<text x="24" y="80" fill="#c9d1d9">Source: a2dad41b7273</text>
+<text x="24" y="102" fill="#c9d1d9"></text>
+<text x="24" y="124" fill="#3fb950">PASS npm run typecheck</text>
+<text x="24" y="146" fill="#79c0ff">$ bash -e -o pipefail -c npm run typecheck</text>
+<text x="24" y="168" fill="#c9d1d9">&gt; agent-work-layer@0.1.2 typecheck</text>
+<text x="24" y="190" fill="#c9d1d9">&gt; tsc --noEmit -p tsconfig.json</text>
+<text x="24" y="212" fill="#c9d1d9"></text>
+<text x="24" y="234" fill="#3fb950">PASS npm test</text>
+<text x="24" y="256" fill="#79c0ff">$ bash -e -o pipefail -c npm test</text>
+<text x="24" y="278" fill="#c9d1d9">&gt; agent-work-layer@0.1.2 test</text>
+<text x="24" y="300" fill="#c9d1d9">&gt; node --test &quot;test/**/*.test.ts&quot;</text>
+<text x="24" y="322" fill="#c9d1d9">▶ awl CLI</text>
+<text x="24" y="344" fill="#c9d1d9">✔ --help and no arguments print usage (751.780698ms)</text>
+<text x="24" y="366" fill="#c9d1d9">✔ --version prints the package version (384.121473ms)</text>
+<text x="24" y="388" fill="#c9d1d9">✔ validate passes the good example (278.336419ms)</text>
+<text x="24" y="410" fill="#c9d1d9">✔ validate fails the bad example and names each rule (266.792821ms)</text>
+<text x="24" y="432" fill="#c9d1d9">✔ validate --json prints machine-readable results (274.193218ms)</text>
+<text x="24" y="454" fill="#c9d1d9">Full output: evidence.json</text>
+<text x="24" y="476" fill="#c9d1d9"></text>
+<text x="24" y="498" fill="#3fb950">PASS npm run test:package</text>
+<text x="24" y="520" fill="#79c0ff">$ bash -e -o pipefail -c npm run test:package</text>
+<text x="24" y="542" fill="#c9d1d9">&gt; agent-work-layer@0.1.2 test:package</text>
+<text x="24" y="564" fill="#c9d1d9">&gt; npm run build &amp;&amp; node scripts/package-smoke.ts</text>
+<text x="24" y="586" fill="#c9d1d9">&gt; agent-work-layer@0.1.2 build</text>
+<text x="24" y="608" fill="#c9d1d9">&gt; rm -rf dist &amp;&amp; tsc -p tsconfig.build.json &amp;&amp; chmod +x dist/cli.js</text>
+<text x="24" y="630" fill="#c9d1d9">package ok: agent-work-layer-0.1.2.tgz, 27 files, 26.5 kB</text>
+</g>
+</svg>
