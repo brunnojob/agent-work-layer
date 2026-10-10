@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "repository": "brunnojob/agent-work-layer",
-  "source_commit": "a2dad41b7273fe5f6184cf19001690f5e3577bd3",
-  "generated_at": "2026-10-10T02:36:20.299198+00:00",
-  "run_url": "https://github.com/brunnojob/agent-work-layer/actions/runs/38017570828",
+  "source_commit": "a6899586abe1639355fa169bdd087fe9500034f0",
+  "generated_at": "2026-10-10T02:44:32.037433+00:00",
+  "run_url": "https://github.com/brunnojob/agent-work-layer/actions/runs/38018059323",
   "inputs_sha256": {
     ".proof/scenarios.json": "7728c867f77879ef97a37ecdc5c0db6d959a79b3fd3fe811b060247b41ab891a"
   },
@@ -22,7 +22,7 @@
       "exit": 0,
       "expected_exit": 0,
       "passed": true,
-      "seconds": 1.855,
+      "seconds": 1.707,
       "output": "\nadded 99 packages, and audited 100 packages in 2s\n\n34 packages are looking for funding\n  run `npm fund` for details\n\nfound 0 vulnerabilities\n",
       "output_sha256": "3bd0fb1ffa350ddb499ba14bde2bf989f6bf7dbd360149bc324e4deee4b4252c"
     },
@@ -40,7 +40,7 @@
       "exit": 0,
       "expected_exit": 0,
       "passed": true,
-      "seconds": 0.301,
+      "seconds": 0.453,
       "output": "\n> agent-work-layer@0.1.2 typecheck\n> tsc --noEmit -p tsconfig.json\n\n",
       "output_sha256": "73138b9c1a6e88202c54d286441d66e08e4fcab2c4c3beae4e35fe1b2d132ded"
     },
@@ -58,9 +58,9 @@
       "exit": 0,
       "expected_exit": 0,
       "passed": true,
-      "seconds": 5.894,
-      "output": "\n> agent-work-layer@0.1.2 test\n> node --test \"test/**/*.test.ts\"\n\n▶ awl CLI\n  ✔ --help and no arguments print usage (751.780698ms)\n  ✔ --version prints the package version (384.121473ms)\n  ✔ validate passes the good example (278.336419ms)\n  ✔ validate fails the bad example and names each rule (266.792821ms)\n  ✔ validate --json prints machine-readable results (274.193218ms)\n  ✔ validate skips the report when the order is invalid (232.605307ms)\n  ✔ validate --parent checks delegation rules (500.928848ms)\n  ✔ a warning-only report exits 0 and marks the file with ! (232.40185ms)\n  ✔ usage errors exit 2 (1153.55864ms)\n  ✔ schema prints both JSON Schemas (469.932174ms)\n✔ awl CLI (4546.867171ms)\n▶ awl desk over stdio\n  ✔ two processes coordinate through a shared folder (736.633581ms)\n✔ awl desk over stdio (750.468286ms)\n▶ toolAllowed\n  ✔ filings/search with [filings/search] → true (0.813497ms)\n  ✔ filings/search with [filings/*] → true (0.229867ms)\n  ✔ filings/search with [*] → true (0.136997ms)\n  ✔ filings/search with [filings/get] → false (0.232571ms)\n  ✔ filings/search with [filingsx/*] → false (0.132921ms)\n  ✔ filings/search with [files/*, calc/*] → false (0.142415ms)\n  ✔ filings/search with [] → false (0.30466ms)\n✔ toolAllowed (3.544449ms)\n▶ patternCovered\n  ✔ filings/search within [filings/search] → true (1.090015ms)\n  ✔ filings/search within [filings/*] → true (0.149055ms)\n  ✔ filings/* within [filings/*] → true (0.169436ms)\n  ✔ filings/* within [*] → true (0.294034ms)\n  ✔ * within [*] → true (2.016904ms)\n  ✔ filings/* within [filings/search] → false (0.094493ms)\n  ✔ * within [filings/*] → false (0.069334ms)\n  ✔ calc/sum within [filings/*] → false (0.104979ms)\n  ✔ calc/sum within [] → false (0.082855ms)\n✔ patternCovered (5.081197ms)\n▶ validateChildOrder\n  ✔ accepts a strictly narrower child (1.581366ms)\n  ✔ accepts a child equal to its parent (0.164538ms)\n  ✔ accepts extra budget units the parent does not limit (0.222035ms)\n  ✔ C1 rejects a child that drops a parent budget unit (0.338491ms)\n  ✔ C1 rejects a larger budget (0.123967ms)\n  ✔ C2 rejects a wider tool pattern (0.138059ms)\n  ✔ C2 rejects a tool the parent does not have (0.105078ms)\n  ✔ C3 rejects a later deadline (0.093491ms)\n  ✔ reports every violation at once (0.279421ms)\n✔ validateChildOrder (3.389184ms)\n▶ create\n  ✔ fills spec, id, created_at and from (5.993935ms)\n  ✔ keeps an explicit id (0.319041ms)\n  ✔ the actor is always the manager, whatever the input says (0.884274ms)\n  ✔ uses a random id by default (0.923704ms)\n  ✔ rejects a duplicate id (0.588127ms)\n  ✔ rejects an invalid order with findings (1.102784ms)\n  ✔ rejects a deadline already in the past (0.406824ms)\n  ✔ requires an actor (0.759626ms)\n✔ create (12.708347ms)\n▶ reads\n  ✔ get throws NOT_FOUND for an unknown id (0.701639ms)\n  ✔ returned records are copies (0.619935ms)\n  ✔ list filters by to, from, state and parent (11.078608ms)\n  ✔ list returns summaries (0.326212ms)\n✔ reads (13.097294ms)\n▶ lifecycle through the desk\n  ✔ happy path: offer, accept, start, report, approve (2.86953ms)\n  ✔ the report gets spec, order_id, from, attempt and finished_at (0.664763ms)\n  ✔ a worker-supplied finished_at is kept (0.658293ms)\n  ✔ decline ends the order (0.596861ms)\n  ✔ rework returns to working and numbers attempts (1.379602ms)\n  ✔ rework needs a reason (1.076735ms)\n  ✔ review rejects an unknown decision (0.610441ms)\n  ✔ blocked, answered, then done (1.316717ms)\n  ✔ an empty answer is refused (0.551101ms)\n  ✔ a failed repor\nFull transcript in the execution-proof artifact.",
-      "output_sha256": "e9ca3987ca0f430e894d771a75a50e788bbec777453479e563e056d32a1f8459",
+      "seconds": 7.149,
+      "output": "\n> agent-work-layer@0.1.2 test\n> node --test \"test/**/*.test.ts\"\n\n▶ awl CLI\n  ✔ --help and no arguments print usage (942.458031ms)\n  ✔ --version prints the package version (514.753395ms)\n  ✔ validate passes the good example (336.540485ms)\n  ✔ validate fails the bad example and names each rule (316.485844ms)\n  ✔ validate --json prints machine-readable results (311.133436ms)\n  ✔ validate skips the report when the order is invalid (278.372693ms)\n  ✔ validate --parent checks delegation rules (608.910671ms)\n  ✔ a warning-only report exits 0 and marks the file with ! (285.469325ms)\n  ✔ usage errors exit 2 (1389.003666ms)\n  ✔ schema prints both JSON Schemas (554.480681ms)\n✔ awl CLI (5539.854508ms)\n▶ awl desk over stdio\n  ✔ two processes coordinate through a shared folder (854.608884ms)\n✔ awl desk over stdio (866.013597ms)\n▶ toolAllowed\n  ✔ filings/search with [filings/search] → true (1.316844ms)\n  ✔ filings/search with [filings/*] → true (0.324134ms)\n  ✔ filings/search with [*] → true (0.170919ms)\n  ✔ filings/search with [filings/get] → false (0.240481ms)\n  ✔ filings/search with [filingsx/*] → false (0.133713ms)\n  ✔ filings/search with [files/*, calc/*] → false (0.377592ms)\n  ✔ filings/search with [] → false (0.245657ms)\n✔ toolAllowed (4.659818ms)\n▶ patternCovered\n  ✔ filings/search within [filings/search] → true (1.320107ms)\n  ✔ filings/search within [filings/*] → true (0.507147ms)\n  ✔ filings/* within [filings/*] → true (0.37408ms)\n  ✔ filings/* within [*] → true (0.475439ms)\n  ✔ * within [*] → true (2.421509ms)\n  ✔ filings/* within [filings/search] → false (0.819931ms)\n  ✔ * within [filings/*] → false (0.105508ms)\n  ✔ calc/sum within [filings/*] → false (0.092011ms)\n  ✔ calc/sum within [] → false (0.115073ms)\n✔ patternCovered (7.341107ms)\n▶ validateChildOrder\n  ✔ accepts a strictly narrower child (1.57977ms)\n  ✔ accepts a child equal to its parent (0.245548ms)\n  ✔ accepts extra budget units the parent does not limit (0.183977ms)\n  ✔ C1 rejects a child that drops a parent budget unit (0.500683ms)\n  ✔ C1 rejects a larger budget (0.21133ms)\n  ✔ C2 rejects a wider tool pattern (0.15398ms)\n  ✔ C2 rejects a tool the parent does not have (0.135313ms)\n  ✔ C3 rejects a later deadline (0.13781ms)\n  ✔ reports every violation at once (0.447696ms)\n✔ validateChildOrder (4.095999ms)\n▶ create\n  ✔ fills spec, id, created_at and from (7.570127ms)\n  ✔ keeps an explicit id (0.46844ms)\n  ✔ the actor is always the manager, whatever the input says (0.49829ms)\n  ✔ uses a random id by default (1.393075ms)\n  ✔ rejects a duplicate id (2.898666ms)\n  ✔ rejects an invalid order with findings (0.567341ms)\n  ✔ rejects a deadline already in the past (0.706402ms)\n  ✔ requires an actor (0.56567ms)\n✔ create (16.935247ms)\n▶ reads\n  ✔ get throws NOT_FOUND for an unknown id (0.475327ms)\n  ✔ returned records are copies (0.708682ms)\n  ✔ list filters by to, from, state and parent (14.029132ms)\n  ✔ list returns summaries (0.54945ms)\n✔ reads (16.246198ms)\n▶ lifecycle through the desk\n  ✔ happy path: offer, accept, start, report, approve (4.125123ms)\n  ✔ the report gets spec, order_id, from, attempt and finished_at (0.981451ms)\n  ✔ a worker-supplied finished_at is kept (0.632739ms)\n  ✔ decline ends the order (0.985245ms)\n  ✔ rework returns to working and numbers attempts (1.131121ms)\n  ✔ rework needs a reason (1.913321ms)\n  ✔ review rejects an unknown decision (0.949091ms)\n  ✔ blocked, answered, then done (1.8994ms)\n  ✔ an empty answer is refused (0.681224ms)\n  ✔ a failed report is su\nFull transcript in the execution-proof artifact.",
+      "output_sha256": "67637206f4b69b28a9144c2707df47e38ba7e6e7c16d35f0bd59f820930b4b80",
       "output_truncated": true
     },
     {
@@ -77,7 +77,7 @@
       "exit": 0,
       "expected_exit": 0,
       "passed": true,
-      "seconds": 3.461,
+      "seconds": 3.812,
       "output": "\n> agent-work-layer@0.1.2 test:package\n> npm run build && node scripts/package-smoke.ts\n\n\n> agent-work-layer@0.1.2 build\n> rm -rf dist && tsc -p tsconfig.build.json && chmod +x dist/cli.js\n\npackage ok: agent-work-layer-0.1.2.tgz, 27 files, 26.5 kB\n",
       "output_sha256": "cce2a5275e9c60ba4e8afcacbfbe0f65deeb76e292d77db18749147452252d87"
     }
